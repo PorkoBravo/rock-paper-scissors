@@ -1,16 +1,14 @@
 package gz.porcobravo.rps.data;
 
-import javax.validation.constraints.NotNull;
-
 import org.springframework.stereotype.Component;
 
 @Component
 public class MatchHistoryDatabase {
 	
-	private @NotNull Integer rounds;
-	private @NotNull Integer winsForPlayer1;
-	private @NotNull Integer winsForPlayer2;
-	private @NotNull Integer draws;
+	private Integer rounds = 0;
+	private Integer winsForPlayer1 = 0;
+	private Integer winsForPlayer2 = 0;
+	private Integer draws = 0;
 	
 	public synchronized MatchHistoryData getHistory() {
 		return new MatchHistoryData(rounds, winsForPlayer1, winsForPlayer2, draws);
