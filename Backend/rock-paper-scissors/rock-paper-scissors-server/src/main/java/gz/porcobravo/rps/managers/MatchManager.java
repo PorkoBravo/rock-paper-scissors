@@ -1,9 +1,13 @@
 package gz.porcobravo.rps.managers;
 
+import java.util.Map;
+
+import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import gz.porcobravo.dtos.MatchResult;
+import gz.porcobravo.dtos.Result;
 import gz.porcobravo.dtos.Shapes;
 import gz.porcobravo.rps.components.GenerateRandomNumber;
 import gz.porcobravo.rps.services.MatchService;
@@ -11,11 +15,13 @@ import gz.porcobravo.rps.services.MatchService;
 @Service
 public class MatchManager implements MatchService{
 	private final static Integer MAX_RANDOM_VALUE = Shapes.values().length;
+
+	@Autowired
+	Map<Integer, Result> matchResultBean;
 	
-	private final static Integer ROCK = 0;
-	private final static Integer PAPER = 1;
-	private final static Integer SCISSORS = 2;
-	 
+	@Autowired
+	private BeanFactory beanFactory;
+
 	@Autowired
 	GenerateRandomNumber randomGenerator;
 
@@ -25,13 +31,8 @@ public class MatchManager implements MatchService{
 		result.setPlayer2Shape(Shapes.ROCK);
 		
 		Integer generatedNumber = this.randomGenerator.generate(MAX_RANDOM_VALUE);
-		if(generatedNumber == ROCK) {
-			result.setPlayer1Shape(Shapes.ROCK);
-		} else if(generatedNumber == PAPER) {
-			result.setPlayer1Shape(Shapes.PAPER);
-		} else if(generatedNumber == SCISSORS) {
-			result.setPlayer1Shape(Shapes.SCISSORS);
-		}
+		result.setResult(matchResultBean.get(generatedNumber));
+		result.setPlayer1Shape(beanFactory.getBean(Shapes.class, generatedNumber));
 		
 		return result;
 	}
