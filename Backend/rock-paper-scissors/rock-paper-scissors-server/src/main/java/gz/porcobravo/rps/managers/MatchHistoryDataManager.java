@@ -20,20 +20,17 @@ public class MatchHistoryDataManager implements MatchHistoryDataService {
 
 	@Override
 	public void saveDraw() {
-		// TODO Auto-generated method stub
-		
+		historyDatabase.saveDraw();
 	}
 
 	@Override
 	public void savePlayer1Victory() {
-		// TODO Auto-generated method stub
-		
+		historyDatabase.saveWinForPlayer1();
 	}
 
 	@Override
 	public void savePlayer2Victory() {
-		// TODO Auto-generated method stub
-		
+		historyDatabase.saveWinForPlayer2();
 	}
 
 }
