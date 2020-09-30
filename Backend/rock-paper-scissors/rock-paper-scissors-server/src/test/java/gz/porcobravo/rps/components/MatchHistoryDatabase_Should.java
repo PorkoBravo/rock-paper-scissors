@@ -59,5 +59,64 @@ public class MatchHistoryDatabase_Should {
 		MatchHistoryData result = this.matchHistory.getHistory();
 		assertEquals(total_draws, result.getDraws());
 	}
+	
+	@Test
+	public void increase_total_rounds_saving_draw() {
+		final Integer initial_rounds = 0;
+		ReflectionTestUtils.setField(matchHistory, ROUNDS_FIELD, initial_rounds);
+		
+		this.matchHistory.saveDraw();
+		
+		assertEquals(initial_rounds+1, ReflectionTestUtils.getField(matchHistory, ROUNDS_FIELD));
+	}
 
+	@Test
+	public void increase_total_rounds_saving_player_1_victory() {
+		final Integer initial_rounds = 0;
+		ReflectionTestUtils.setField(matchHistory, ROUNDS_FIELD, initial_rounds);
+		
+		this.matchHistory.saveWinForPlayer1();
+		
+		assertEquals(initial_rounds+1, ReflectionTestUtils.getField(matchHistory, ROUNDS_FIELD));
+	}
+	
+	@Test
+	public void increase_total_rounds_saving_player_2_victory() {
+		final Integer initial_rounds = 0;
+		ReflectionTestUtils.setField(matchHistory, ROUNDS_FIELD, initial_rounds);
+		
+		this.matchHistory.saveWinForPlayer2();
+		
+		assertEquals(initial_rounds+1, ReflectionTestUtils.getField(matchHistory, ROUNDS_FIELD));
+	}
+	
+	@Test
+	public void increase_draws() {
+		final Integer initial_draws = 0;
+		ReflectionTestUtils.setField(matchHistory, DRAWS_FIELD, initial_draws);
+		
+		this.matchHistory.saveDraw();
+		
+		assertEquals(initial_draws+1, ReflectionTestUtils.getField(matchHistory, DRAWS_FIELD));
+	}
+	
+	@Test
+	public void increase_wins_for_player_1() {
+		final Integer initial_victories = 0;
+		ReflectionTestUtils.setField(matchHistory, WINS_PLAYER_1_FIELD, initial_victories);
+		
+		this.matchHistory.saveWinForPlayer1();
+		
+		assertEquals(initial_victories+1, ReflectionTestUtils.getField(matchHistory, WINS_PLAYER_1_FIELD));
+	}
+	
+	@Test
+	public void increase_wins_for_player_2() {
+		final Integer initial_victories = 0;
+		ReflectionTestUtils.setField(matchHistory, WINS_PLAYER_2_FIELD, initial_victories);
+		
+		this.matchHistory.saveWinForPlayer2();
+		
+		assertEquals(initial_victories+1, ReflectionTestUtils.getField(matchHistory, WINS_PLAYER_2_FIELD));
+	}
 }

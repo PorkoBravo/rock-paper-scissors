@@ -15,18 +15,21 @@ public class MatchHistoryDatabase {
 	}
 
 	public synchronized void saveDraw() {
-
+		increaseTotalRounds();
+		this.draws++;
 	}
 
 	public synchronized void saveWinForPlayer1() {
-
+		increaseTotalRounds();
+		this.winsForPlayer1++;
 	}
 
 	public synchronized void saveWinForPlayer2() {
-
+		increaseTotalRounds();
+		this.winsForPlayer2++;
 	}
 	
 	private synchronized void increaseTotalRounds() {
-		
+		this.rounds++;
 	}
 }
