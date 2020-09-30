@@ -10,6 +10,7 @@ import gz.porcobravo.dtos.MatchResult;
 import gz.porcobravo.dtos.Result;
 import gz.porcobravo.dtos.Shapes;
 import gz.porcobravo.rps.components.GenerateRandomNumber;
+import gz.porcobravo.rps.services.MatchHistoryService;
 import gz.porcobravo.rps.services.MatchService;
 
 @Service
@@ -17,13 +18,16 @@ public class MatchManager implements MatchService{
 	private final static Integer MAX_RANDOM_VALUE = Shapes.values().length;
 
 	@Autowired
-	Map<Integer, Result> matchResultBean;
+	private Map<Integer, Result> matchResultBean;
 	
 	@Autowired
 	private BeanFactory beanFactory;
 
 	@Autowired
-	GenerateRandomNumber randomGenerator;
+	private GenerateRandomNumber randomGenerator;
+	
+	@Autowired
+	private MatchHistoryService historyService;
 
 	@Override
 	public MatchResult playNewMatch() {
@@ -33,6 +37,14 @@ public class MatchManager implements MatchService{
 		Integer generatedNumber = this.randomGenerator.generate(MAX_RANDOM_VALUE);
 		result.setResult(matchResultBean.get(generatedNumber));
 		result.setPlayer1Shape(beanFactory.getBean(Shapes.class, generatedNumber));
+		
+		if(result.getResult() == Result.DRAW) {
+			historyService.addDraw();
+		} else if(result.getResult() == Result.PLAYER_1_WIN) {
+			historyService.addPlayer1Victory();
+		} else if(result.getResult() == Result.PLAYER_2_WIN) {
+			historyService.addPlayer2Victory();
+		}
 		
 		return result;
 	}

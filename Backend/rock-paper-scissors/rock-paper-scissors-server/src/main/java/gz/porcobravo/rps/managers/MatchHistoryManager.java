@@ -27,4 +27,22 @@ public class MatchHistoryManager implements MatchHistoryService{
 		return new MatchHistory();
 	}
 
+	@Override
+	public void addDraw() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addPlayer1Victory() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addPlayer2Victory() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
