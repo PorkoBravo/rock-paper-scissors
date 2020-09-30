@@ -2,7 +2,6 @@ package gz.porcobravo.rps.services;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +20,30 @@ public class MatchHistoryDataService_Should {
 	private MatchHistoryDatabase mockedDatabase;
 	
 	@Test
-	public void invoke_1_time_data_service() {
-		when(mockedDatabase.getHistory()).thenReturn(null);
-
+	public void invoke_1_time_data_service_when_get_history() {
 		this.service.getHistory();
 
 		verify(mockedDatabase, times(1)).getHistory();
+	}
+	
+	@Test
+	public void invoke_1_time_data_service_when_saving_draw() {
+		this.service.saveDraw();
+
+		verify(mockedDatabase, times(1)).saveDraw();
+	}
+	
+	@Test
+	public void invoke_1_time_data_service_when_saving_win_for_player_1() {
+		this.service.savePlayer1Victory();
+
+		verify(mockedDatabase, times(1)).saveWinForPlayer1();
+	}
+	
+	@Test
+	public void invoke_1_time_data_service_when_saving_win_for_player_2() {
+		this.service.savePlayer2Victory();
+
+		verify(mockedDatabase, times(1)).saveWinForPlayer2();
 	}
 }

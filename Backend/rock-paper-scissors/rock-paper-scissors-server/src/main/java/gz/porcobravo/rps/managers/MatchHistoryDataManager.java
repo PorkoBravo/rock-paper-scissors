@@ -18,4 +18,19 @@ public class MatchHistoryDataManager implements MatchHistoryDataService {
 		return historyDatabase.getHistory();
 	}
 
+	@Override
+	public void saveDraw() {
+		historyDatabase.saveDraw();
+	}
+
+	@Override
+	public void savePlayer1Victory() {
+		historyDatabase.saveWinForPlayer1();
+	}
+
+	@Override
+	public void savePlayer2Victory() {
+		historyDatabase.saveWinForPlayer2();
+	}
+
 }
