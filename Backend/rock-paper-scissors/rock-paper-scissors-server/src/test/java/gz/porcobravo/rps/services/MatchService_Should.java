@@ -35,7 +35,7 @@ public class MatchService_Should {
 	Map<Integer, Result> mockedResultBean;
 	
 	@MockBean
-	MatchHistoryService mockedHistoryService;
+	MatchHistoryDataService mockedHistoryDataService;
 
 
 	@Test
@@ -138,7 +138,7 @@ public class MatchService_Should {
 		
 		this.service.playNewMatch();
 		
-		verify(mockedHistoryService, times(1)).addDraw();
+		verify(mockedHistoryDataService, times(1)).saveDraw();
 	}
 
 	@Test
@@ -148,7 +148,7 @@ public class MatchService_Should {
 		
 		this.service.playNewMatch();
 		
-		verify(mockedHistoryService, times(1)).addPlayer1Victory();
+		verify(mockedHistoryDataService, times(1)).savePlayer1Victory();
 	}
 	
 	@Test
@@ -158,6 +158,6 @@ public class MatchService_Should {
 		
 		this.service.playNewMatch();
 		
-		verify(mockedHistoryService, times(1)).addPlayer2Victory();
+		verify(mockedHistoryDataService, times(1)).savePlayer2Victory();
 	}
 }

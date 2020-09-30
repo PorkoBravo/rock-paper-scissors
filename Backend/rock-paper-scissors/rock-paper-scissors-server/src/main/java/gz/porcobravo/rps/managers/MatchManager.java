@@ -10,7 +10,7 @@ import gz.porcobravo.dtos.MatchResult;
 import gz.porcobravo.dtos.Result;
 import gz.porcobravo.dtos.Shapes;
 import gz.porcobravo.rps.components.GenerateRandomNumber;
-import gz.porcobravo.rps.services.MatchHistoryService;
+import gz.porcobravo.rps.services.MatchHistoryDataService;
 import gz.porcobravo.rps.services.MatchService;
 
 @Service
@@ -27,7 +27,7 @@ public class MatchManager implements MatchService {
 	private GenerateRandomNumber randomGenerator;
 
 	@Autowired
-	private MatchHistoryService historyService;
+	private MatchHistoryDataService historyService;
 
 	@Override
 	public MatchResult playNewMatch() {
@@ -48,11 +48,11 @@ public class MatchManager implements MatchService {
 
 	private void saveToHistory(MatchResult result) {
 		if (result.getResult() == Result.DRAW) {
-			historyService.addDraw();
+			historyService.saveDraw();
 		} else if (result.getResult() == Result.PLAYER_1_WIN) {
-			historyService.addPlayer1Victory();
+			historyService.savePlayer1Victory();
 		} else if (result.getResult() == Result.PLAYER_2_WIN) {
-			historyService.addPlayer2Victory();
+			historyService.savePlayer2Victory();
 		}
 	}
 
