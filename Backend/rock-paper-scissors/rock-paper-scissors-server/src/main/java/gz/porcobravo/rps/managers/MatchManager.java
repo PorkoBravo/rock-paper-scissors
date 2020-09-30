@@ -14,39 +14,46 @@ import gz.porcobravo.rps.services.MatchHistoryService;
 import gz.porcobravo.rps.services.MatchService;
 
 @Service
-public class MatchManager implements MatchService{
+public class MatchManager implements MatchService {
 	private final static Integer MAX_RANDOM_VALUE = Shapes.values().length;
 
 	@Autowired
 	private Map<Integer, Result> matchResultBean;
-	
+
 	@Autowired
 	private BeanFactory beanFactory;
 
 	@Autowired
 	private GenerateRandomNumber randomGenerator;
-	
+
 	@Autowired
 	private MatchHistoryService historyService;
 
 	@Override
 	public MatchResult playNewMatch() {
+		MatchResult matchResult = playMatch();
+		saveToHistory(matchResult);
+		return matchResult;
+	}
+
+	private MatchResult playMatch() {
 		MatchResult result = new MatchResult();
-		result.setPlayer2Shape(Shapes.ROCK);
-		
+
 		Integer generatedNumber = this.randomGenerator.generate(MAX_RANDOM_VALUE);
+		result.setPlayer2Shape(Shapes.ROCK);
 		result.setResult(matchResultBean.get(generatedNumber));
 		result.setPlayer1Shape(beanFactory.getBean(Shapes.class, generatedNumber));
-		
-		if(result.getResult() == Result.DRAW) {
+		return result;
+	}
+
+	private void saveToHistory(MatchResult result) {
+		if (result.getResult() == Result.DRAW) {
 			historyService.addDraw();
-		} else if(result.getResult() == Result.PLAYER_1_WIN) {
+		} else if (result.getResult() == Result.PLAYER_1_WIN) {
 			historyService.addPlayer1Victory();
-		} else if(result.getResult() == Result.PLAYER_2_WIN) {
+		} else if (result.getResult() == Result.PLAYER_2_WIN) {
 			historyService.addPlayer2Victory();
 		}
-		
-		return result;
 	}
 
 }
