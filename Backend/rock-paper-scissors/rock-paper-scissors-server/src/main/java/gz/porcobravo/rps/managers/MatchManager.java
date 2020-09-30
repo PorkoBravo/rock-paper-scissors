@@ -10,16 +10,30 @@ import gz.porcobravo.rps.services.MatchService;
 
 @Service
 public class MatchManager implements MatchService{
-	private final static int MAX_RANDOM_VALUE = Shapes.values().length;
+	private final static Integer MAX_RANDOM_VALUE = Shapes.values().length;
+	
+	private final static Integer ROCK = 0;
+	private final static Integer PAPER = 1;
+	private final static Integer SCISSORS = 2;
 	 
 	@Autowired
 	GenerateRandomNumber randomGenerator;
 
 	@Override
 	public MatchResult playNewMatch() {
-		int generatedNumber = this.randomGenerator.generate(MAX_RANDOM_VALUE);
+		MatchResult result = new MatchResult();
+		result.setPlayer2Shape(Shapes.ROCK);
 		
-		return null;
+		Integer generatedNumber = this.randomGenerator.generate(MAX_RANDOM_VALUE);
+		if(generatedNumber == ROCK) {
+			result.setPlayer1Shape(Shapes.ROCK);
+		} else if(generatedNumber == PAPER) {
+			result.setPlayer1Shape(Shapes.PAPER);
+		} else if(generatedNumber == SCISSORS) {
+			result.setPlayer1Shape(Shapes.SCISSORS);
+		}
+		
+		return result;
 	}
 
 }
