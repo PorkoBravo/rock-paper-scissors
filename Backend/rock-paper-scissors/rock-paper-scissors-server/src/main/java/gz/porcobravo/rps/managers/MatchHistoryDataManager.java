@@ -15,8 +15,7 @@ public class MatchHistoryDataManager implements MatchHistoryDataService {
 
 	@Override
 	public MatchHistoryData getHistory() {
-		// not yet
-		return null;
+		return historyDatabase.getHistory();
 	}
 
 }
