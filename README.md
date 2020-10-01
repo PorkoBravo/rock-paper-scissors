@@ -20,7 +20,7 @@ There will be 2 kinds of players, one should always choose randomly, the other s
 - Keep the information needed in memory. 
 
 # Project Description
-Two folders Backend and Frontend for the front and the back. The front was made with react and is very simple. The backend was made with java8 and spring boot. A bit more effort was put in the backend in order to build a complete API because all game rules (business logic) lives here.
+There are two folders (Backend and Frontend) for the front and the back. The front was made with react and is very simple. The backend was made with java8 and spring boot. A bit more effort was put in the backend in order to build a complete API because all game rules (business logic) lives here.
 
 The backend has two projects (both modules of the same parent):
 rock-paper-scissors-core: By the time being only dto's to exchange with consumers of the API.
