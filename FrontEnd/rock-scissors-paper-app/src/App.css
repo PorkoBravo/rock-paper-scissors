@@ -71,3 +71,17 @@
   margin: auto;
   width: 90%;
 }
+
+.history {
+	font-family:Trebuchet MS;
+	font-size:20px;
+}
+
+.bold {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.green {
+  color: #4CAF50;
+}
