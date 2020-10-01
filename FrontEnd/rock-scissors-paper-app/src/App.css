@@ -1,38 +1,73 @@
-.App {
+
+#title {
   text-align: center;
+  font-family: arial, sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#matchs {
+  text-align: center;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  border: 3px solid #ddd;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#matchs td, #matchs th {
+  border: 1px solid #ddd;
+  padding: 8px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+#matchs tr:nth-child(even){background-color: #f2f2f2;}
+
+#matchs tr:hover {background-color: #ddd;}
+
+#matchs th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #4CAF50;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.action-button {
+	background-color:#7892c2;
+	border-radius:3px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Trebuchet MS;
+	font-size:16px;
+	font-weight:bold;
+	padding:9px 23px;
+  text-decoration:none;
+  border: none;
+  margin: 20px;
+}
+.action-button:hover {
+	background-color:#476e9e;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.secondary-button {
+	background-color:white;
+	border-radius:3px;
+	display:inline-block;
+	cursor:pointer;
+	color:#476e9e;
+	font-family:Trebuchet MS;
+	font-size:16px;
+	font-weight:bold;
+	padding:9px 23px;
+  text-decoration:none;
+  border: none;
+}
+.secondary-button:hover {
+	background-color:white
+}
+
+.center {
+  margin: auto;
+  width: 90%;
 }

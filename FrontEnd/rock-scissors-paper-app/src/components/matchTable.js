@@ -37,15 +37,17 @@ class MatchTable extends React.Component {
  
     renderTableData() {
       return this.state.matchs.map((match, index) => {
-         const { round, shape1, shape2, result } = match
-         return (
-            <tr key={round}>
-               <td>{round}</td>
-               <td>{shape1}</td>
-               <td>{shape2}</td>
-               <td>{result}</td>
-            </tr>
-         )
+         console.log(match)
+         if(match.round != null) {
+            return (
+               <tr key={match.round}>
+                  <td>{match.round}</td>
+                  <td>{match.shape1}</td>
+                  <td>{match.shape2}</td>
+                  <td>{match.result}</td>
+               </tr>
+            )
+         } else return <tr hidden="true"></tr> 
       })
    }
 
@@ -60,8 +62,10 @@ class MatchTable extends React.Component {
       return (
          <div>
             <h1 id='title'>Rock Scissors Paper Matches</h1>
-            <button id="restartTable" onClick={() => this.restartMatchTable()}>Restart</button>
-            <button id="playRound" onClick={() => this.playRound()}>Play round!</button>
+            <div class="center">
+               <button class="secondary-button" id="restartTable" onClick={() => this.restartMatchTable()}>Restart</button>
+               <button class="action-button" id="playRound" onClick={() => this.playRound()}>Play round!</button>
+            </div>
             <table id='matchs'>
                <tbody>
                   <tr>{this.renderTableHeader()}</tr>
