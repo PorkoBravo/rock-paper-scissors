@@ -3,8 +3,8 @@ rock paper scissors game
 
 This is a very simple application which consist in simplified version of the rock scissors paper game.
 
-Validation criteria follows: 
-There will be 2 kinds of players, one should always choose randomly, the other should always choose rock.
+Validation criteria follows
+- There will be 2 kinds of players, one should always choose randomly, the other should always choose rock.
 - The program will be a web, using a java Rest API and a frontend view using javascript
 - “Play Round” button that will play an automatic round
 - Field showing the number of rounds played by that user so far.
